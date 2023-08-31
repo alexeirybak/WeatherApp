@@ -1,0 +1,250 @@
+.data_details {
+  display: grid;
+  grid-template-areas: 'today .' 'blow humidity' 'visibility atm';
+  gap: 18px 80px;
+  align-items: center;
+  justify-content: center;
+}
+
+.data_panel_forecast {
+  color: var(--big-text);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 100%;
+  text-align: center;
+}
+
+.today {
+  grid-area: today;
+}
+
+.data_details_block {
+  width: 25vw;
+  min-width: 320px;
+  height: 180px;
+  border-radius: 10px;
+  background-color: var(--light-block);
+  transition: background-color 0.5s ease;
+  box-shadow: 0 8px 15px 0 rgb(0 0 0 / 5%);
+  padding-top: 20px;
+  padding-right: 25px;
+  padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  box-sizing: border-box;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale 1;
+  }
+}
+
+.blow {
+  grid-area: blow;
+  box-sizing: border-box;
+  padding-bottom: 12px;
+}
+
+.text_middle {
+  color: var(--big-text);
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.text_large {
+  color: var(--big-text);
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.text_large span {
+  font-size: 2.25rem;
+  font-weight: 500;
+}
+
+.data_wind {
+  display: flex;
+  flex-direction: row;
+  column-gap: 11px;
+  align-items: center;
+}
+
+.visibility {
+  grid-area: visibility;
+  height: 162px;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.humidity {
+  grid-area: humidity;
+  box-sizing: border-box;
+  padding-bottom: 53px;
+}
+
+.humidity_scale {
+  display: flex;
+  flex-direction: column;
+  color: var(--big-text);
+  font-size: 12px;
+  font-weight: 300;
+  row-gap: 2px;
+  width: 100%;
+}
+
+.humidity_scale_markers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--big-text);
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.humidity_scale_imagine {
+  width: 100%;
+  height: 11px;
+  border-radius: 10px;
+  background-color: var(--scale-humidity);
+}
+
+.humidity_scale_indicate {
+  background-color: var(--humidity-indicate);
+  border-radius: 10px;
+  height: 11px;
+}
+
+.humidity_scale_hundred {
+  text-align: right;
+}
+
+.atm {
+  grid-area: atm;
+  height: 162px;
+  box-sizing: border-box;
+  padding-bottom: 24px;
+}
+
+.pressure span {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+@media (width <= 1439px) {
+  .data_details {
+    display: grid;
+    grid-template-areas: 'today ' 'blow' 'humidity' 'visibility' 'atm';
+    gap: 27px 0;
+    justify-items: center;
+    width: 50vw;
+  }
+}
+
+.lds_ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds_ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--big-text);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds_ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds_ellipsis1 0.6s infinite;
+}
+
+.lds_ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds_ellipsis2 0.6s infinite;
+}
+
+.lds_ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds_ellipsis2 0.6s infinite;
+}
+
+.lds_ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds_ellipsis3 0.6s infinite;
+}
+
+@keyframes lds_ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lds_ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds_ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+.loc_loader {
+  margin: 20px;
+  text-align: center;
+}
+
+@media (width <= 375px) {
+  .data_details_block {
+    text-align: center;
+    min-width: 320px;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+  }
+
+  .humidity {
+    padding-bottom: 0;
+  }
+
+  .text_large {
+    font-size: 2.9rem;
+  }
+}
+
+@media (width <= 340px) {
+  .data_details_block {
+    padding: 10px;
+    min-width: 180px;
+  }
+}

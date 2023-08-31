@@ -1,0 +1,56 @@
+.switcher {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+}
+
+.btn_switch {
+  position: relative;
+  width: 64px;
+  height: 32px;
+  padding: 4px;
+  border: 2px solid var(--shadow-text);
+  border-radius: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.btn_switch input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+}
+
+.btn_switch_block {
+  position: absolute;
+  left: 5px;
+  transition: left 0.5s ease;
+  transform: rotate(0deg);
+  transition-property: left, transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+.btn_switch_block_night {
+  position: absolute;
+  left: 35px;
+  transition: left 0.5s ease;
+  transform: rotate(360deg);
+  transition-property: left, transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+.btn_switch_indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  color: var(--indicate);
+  background-color: var(--bg-indicate);
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+}
