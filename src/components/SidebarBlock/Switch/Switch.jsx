@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import '../../../css/main.css';
-import styles from './switch.module.css';
+import { useEffect, useState } from 'react';
+import '../../../styles/GlobalStyle.js';
+import * as S from './switch.styled';
 
-export function Switch() {
+export const Switch = () => {
   const [currentTheme, setCurrentTheme] = useState('light');
 
-  function changeTheme() {
+  const changeTheme = () => {
     if (currentTheme === 'light') {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('theme', 'dark');
@@ -15,7 +15,7 @@ export function Switch() {
       localStorage.setItem('theme', 'light');
       setCurrentTheme('light');
     }
-  }
+  };
 
   useEffect(() => {
     if (localStorage.getItem('theme') === 'dark') {
@@ -28,23 +28,19 @@ export function Switch() {
   }, []);
 
   return (
-    <label className={styles.btn_switch}>
-      <input
+    <S.LabelBtnSwitch>
+      <S.Input
         type='checkbox'
         aria-label='Переключить на дневную / ночную тему'
-        id='switcher'
         checked={currentTheme === 'dark'}
         onChange={changeTheme}
       />
-      <label
+      <S.SwitchBlock
         htmlFor='switcher'
-        className={
-          currentTheme === 'light'
-            ? styles.btn_switch_block
-            : styles.btn_switch_block_night
-        }
+        $currentTheme={currentTheme}
+        $lightTheme={currentTheme === 'light'}
       >
-        <div className={styles.btn_switch_indicator}>
+        <S.Indicator>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             width='13'
@@ -57,8 +53,8 @@ export function Switch() {
               fill='currentColor'
             />
           </svg>
-        </div>
-      </label>
-    </label>
+        </S.Indicator>
+      </S.SwitchBlock>
+    </S.LabelBtnSwitch>
   );
-}
+};

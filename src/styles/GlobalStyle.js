@@ -1,3 +1,22 @@
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: Rubik, sans-serif;
+  font-style: normal;
+  line-height: normal;
+}
+
 :root {
   --shadow-text: #acacac;
   --humidity-indicate: #ec6e4d;
@@ -23,4 +42,4 @@
   --bg-indicate: #ec6e4d;
   --menu-city: #100e1c;
   --scale-humidity: #e6e6e6;
-}
+}`;

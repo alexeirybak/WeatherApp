@@ -1,4 +1,4 @@
-export function formatCityName(city) {
+export const formatCityName = (city) => {
   if (
     city === 'спб' ||
     city === 'СПБ' ||
@@ -16,4 +16,4 @@ export function formatCityName(city) {
     city[i] = city[i][0].toUpperCase() + city[i].slice(1);
   }
   return (city = city.join('-'));
-}
+};

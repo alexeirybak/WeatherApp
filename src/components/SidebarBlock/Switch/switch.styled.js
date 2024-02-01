@@ -1,12 +1,6 @@
-.switcher {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-  cursor: pointer;
-}
+import styled from 'styled-components';
 
-.btn_switch {
+export const LabelBtnSwitch = styled.label`
   position: relative;
   width: 64px;
   height: 32px;
@@ -15,34 +9,27 @@
   border-radius: 20px;
   box-sizing: border-box;
   cursor: pointer;
-}
+`;
 
-.btn_switch input[type='checkbox'] {
+export const Input = styled.input`
   position: absolute;
   opacity: 0;
-}
+`;
 
-.btn_switch_block {
+export const Label = styled.label``;
+
+export const SwitchBlock = styled.label`
   position: absolute;
-  left: 5px;
+  left: ${(props) => (props.$currentTheme === 'light' ? '5px' : '35px')};
   transition: left 0.5s ease;
-  transform: rotate(0deg);
+  transform: ${(props) =>
+    props.$currentTheme === 'light' ? 'rotate(0deg)' : 'rotate(360deg)'};
   transition-property: left, transform;
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
-}
+`;
 
-.btn_switch_block_night {
-  position: absolute;
-  left: 35px;
-  transition: left 0.5s ease;
-  transform: rotate(360deg);
-  transition-property: left, transform;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-in-out;
-}
-
-.btn_switch_indicator {
+export const Indicator = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,4 +40,4 @@
   background-color: var(--bg-indicate);
   transition: background-color 0.5s ease;
   cursor: pointer;
-}
+`;
