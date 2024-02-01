@@ -1,10 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
-import styles from './lowMainPanel.module.css';
+import { useContext, useState, useEffect } from 'react';
 import { Loader } from '../../../utils/Loader';
 import { WeatherContext } from '../../../App';
 import { getWindDirection } from '../../../utils/getWindDirection';
+import windDir from './wind-direction.svg';
+import * as S from './lowMainPanel.styled';
 
-export function LowMainPanel({ isLoading }) {
+export const LowMainPanel = ({ isLoading }) => {
   const { weatherData } = useContext(WeatherContext);
   let [widthIndicate, setWidthIndicate] = useState('50%');
 
@@ -24,12 +25,12 @@ export function LowMainPanel({ isLoading }) {
   let direction = getWindDirection(deg) || 0;
 
   useEffect(() => {
-    function calcWidth() {
+    const calcWidth = () => {
       let newWidthBlockIndicate =
         document.getElementById('parentElement').offsetWidth;
 
       setWidthIndicate((humidity * newWidthBlockIndicate) / 100);
-    }
+    };
 
     calcWidth();
 
@@ -41,81 +42,77 @@ export function LowMainPanel({ isLoading }) {
   }, [humidity]);
 
   return (
-    <section className={styles.data_details}>
-      <h2 className={`${styles.data_panel_forecast} ${styles.today}`}>
-        Подробно на сегодня
-      </h2>
-      <div className={`${styles.data_details_block} ${styles.blow}`}>
+    <S.DataDetails>
+      <S.DataPanelForecast>Подробно на сегодня</S.DataPanelForecast>
+      <S.DataDetailsBlock>
         {isLoading ? (
           <Loader />
         ) : (
           <>
-            <p className={styles.text_middle}>Скорость ветра</p>
-            <p className={styles.text_large}>
+            <S.TextMiddle>Скорость ветра</S.TextMiddle>
+            <S.TextLarge>
               {windSpeed} <span>м/с</span>
-            </p>
-            <div className={styles.data_wind}>
-              <img
-                src='./img/wind-direction.svg'
+            </S.TextLarge>
+            <S.DataWind>
+              <S.DataWindDirection
+                $deg={deg}
+                src={windDir}
                 alt='Направление ветра'
-                className={styles.data_wind_direction}
-                style={{ transform: `rotate(${deg + 225}deg)` }}
               />
-              <p className={styles.text_middle}>{direction}</p>
-            </div>
+              <S.TextMiddle>{direction}</S.TextMiddle>
+            </S.DataWind>
           </>
         )}
-      </div>
-      <div className={`${styles.data_details_block} ${styles.visibility}`}>
+      </S.DataDetailsBlock>
+      <S.DataDetailsBlockVis>
         {isLoading ? (
           <Loader />
         ) : (
           <>
-            <p className={styles.text_middle}>Видимость</p>
-            <p className={styles.text_large}>
+            <S.TextMiddle>Видимость</S.TextMiddle>
+            <S.TextLarge>
               {visibility} <span>км</span>
-            </p>
+            </S.TextLarge>
           </>
         )}
-      </div>
-      <div className={`${styles.data_details_block} ${styles.humidity}`}>
+      </S.DataDetailsBlockVis>
+      <S.DataDetailsBlockHum>
         {isLoading ? (
           <Loader />
         ) : (
           <>
-            <p className={styles.text_middle}>Влажность</p>
-            <p className={styles.text_large}>
+            <S.TextMiddle>Влажность</S.TextMiddle>
+            <S.TextLarge>
               {humidity} <span>%</span>
-            </p>
-            <div className={styles.humidity_scale}>
-              <div className={styles.humidity_scale_markers}>
-                <div>0</div>
-                <div>50</div>
-                <div>100</div>
-              </div>
-              <div id='parentElement' className={styles.humidity_scale_imagine}>
-                <div
-                  className={styles.humidity_scale_indicate}
+            </S.TextLarge>
+            <S.HumidityScale>
+              <S.HumidityScaleMarkers>
+                <S.Markers>0</S.Markers>
+                <S.Markers>50</S.Markers>
+                <S.Markers>100</S.Markers>
+              </S.HumidityScaleMarkers>
+              <S.HumidityScaleImagine id='parentElement'>
+                <S.HumidityScaleIndicate
                   style={{ width: `${widthIndicate}px` }}
-                ></div>
-              </div>
-              <div className={styles.humidity_scale_hundred}>%</div>
-            </div>
+                ></S.HumidityScaleIndicate>
+              </S.HumidityScaleImagine>
+              <S.HumidityScaleHundred>%</S.HumidityScaleHundred>
+            </S.HumidityScale>
           </>
         )}
-      </div>
-      <div className={`${styles.data_details_block} ${styles.atm}`}>
+      </S.DataDetailsBlockHum>
+      <S.DataDetailsBlockAtm>
         {isLoading ? (
           <Loader />
         ) : (
           <>
-            <p className={styles.text_middle}>Давление</p>
-            <p className={`${styles.text_large} ${styles.pressure}`}>
+            <S.TextMiddle>Давление</S.TextMiddle>
+            <S.TextLargePressure>
               {pressure} <span>мм рт.ст.</span>
-            </p>
+            </S.TextLargePressure>
           </>
         )}
-      </div>
-    </section>
+      </S.DataDetailsBlockAtm>
+    </S.DataDetails>
   );
-}
+};

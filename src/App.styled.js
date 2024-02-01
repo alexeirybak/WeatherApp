@@ -1,29 +1,24 @@
-@import url('var.css');
+import styled from 'styled-components';
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-body {
-  font-family: Rubik, sans-serif;
-  font-style: normal;
-  line-height: normal;
-}
-
-.app {
+export const App = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
-}
+  @media screen and (max-width: 1439px) {
+    flex-direction: row;
+    height: 100vh;
+  }
+  @media screen and (max-width: 833px) {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow-x: hidden;
+  }
+`;
 
-.data {
+export const Data = styled.main`
   box-sizing: border-box;
   width: 68vw;
   background-color: var(--light-text);
@@ -34,31 +29,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-@media (width <= 1439px) {
-  .app {
-    flex-direction: row;
-    height: 100vh;
-  }
-
-  .data {
+  @media screen and (max-width: 1439px) {
     width: 60.5vw;
     padding: 63px 28px 83px 27px;
   }
-}
-
-@media (width <= 833px) {
-  .app {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    overflow-x: hidden;
-  }
-
-  .data {
+  @media screen and (max-width: 833px) {
     box-sizing: border-box;
     width: 100vw;
     padding: 50px 60px 96px;
   }
-}
+`;

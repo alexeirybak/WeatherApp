@@ -1,4 +1,4 @@
-export function getWindDirection(deg) {
+export const getWindDirection = (deg) => {
   let direction;
 
   if ((deg >= 0 && deg < 22.5) || deg >= 337.5) {
@@ -27,4 +27,4 @@ export function getWindDirection(deg) {
   }
 
   return direction;
-}
+};

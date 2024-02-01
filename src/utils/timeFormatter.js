@@ -6,7 +6,7 @@ export const getCurrentDate = () => {
   return currentDate.charAt(0).toUpperCase() + currentDate.slice(1);
 };
 
-export function formatTimeHourly(time) {
+export const formatTimeHourly = (time) => {
   const currentDate = new Date();
   const date = new Date(time * 1000);
   const options = {
@@ -36,9 +36,9 @@ export function formatTimeHourly(time) {
   }
 
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
-}
+};
 
-export function formatTimeDaily(time) {
+export const formatTimeDaily = (time) => {
   const date = new Date(time * 1000);
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -53,4 +53,4 @@ export function formatTimeDaily(time) {
 
     return `${dayOfWeek}, ${dayOfMonth} ${month}`;
   }
-}
+};

@@ -1,36 +1,36 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CarouselPanel } from './CarouselPanel/CarouselPanel';
-import styles from './topMainPanel.module.css';
+import * as S from './topMainPanel.styled';
 
-export function TopMainPanel({ isLoading, setIsloading }) {
+export const TopMainPanel = ({ isLoading, setIsloading }) => {
   const [isWeek, setIsWeek] = useState(true);
 
   return (
-    <section className={styles.data_widget}>
-      <div className={styles.data_panel}>
-        <h1 className={styles.data_panel_forecast}>Прогноз</h1>
-        <div className={styles.data_panel_nav}>
-          <button
+    <S.DataVidget>
+      <S.DataPanel>
+        <S.DataPanelForecast>Прогноз</S.DataPanelForecast>
+        <S.DataPanelNav>
+          <S.WeekButton
             id='week'
-            className={`${isWeek ? styles.default_link : styles.active_link}`}
+            $isWeek={isWeek}
             onClick={() => setIsWeek(false)}
           >
             на неделю
-          </button>
-          <button
+          </S.WeekButton>
+          <S.HoursButton
             id='hours'
-            className={`${!isWeek ? styles.default_link : styles.active_link}`}
+            $isWeek={!isWeek}
             onClick={() => setIsWeek(true)}
           >
             почасовой
-          </button>
-        </div>
-      </div>
+          </S.HoursButton>
+        </S.DataPanelNav>
+      </S.DataPanel>
       <CarouselPanel
         isWeek={isWeek}
         isLoading={isLoading}
         setIsLoading={setIsloading}
       />
-    </section>
+    </S.DataVidget>
   );
-}
+};
